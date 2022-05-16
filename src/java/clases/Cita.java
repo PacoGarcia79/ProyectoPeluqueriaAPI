@@ -25,7 +25,7 @@ public class Cita implements Serializable  {
     public Cita() {
     }
 
-    public Cita(int idCita, Date fecha, String cliente, String profesional, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos) {
+    public Cita(int idCita, Date fecha, String cliente, String profesional, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos, String telefono) {
         this.idCita = idCita;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -36,6 +36,7 @@ public class Cita implements Serializable  {
         this.productos = productos;
         this.cantidad = cantidad;
         this.precio_productos = precio_productos;
+        this.telefono = telefono;
     }
     
     public Cita(int idCita, Date fecha, String nombre, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos) {

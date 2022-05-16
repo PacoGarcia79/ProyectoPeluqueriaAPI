@@ -65,11 +65,11 @@
             </tr>
             <tr>
                 <td class="cabecera">PUT</td>
-                <td>./api/peluqueria/servicios/servicio</a></td>
+                <td>./api/peluqueria/servicios/servicio</td>
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/servicio</a></td>
+                <td>./api/peluqueria/servicio</td>
             </tr>   
             <tr>
                 <td class="cabecera">DELETE</td>
@@ -85,23 +85,23 @@
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/productos/busqueda/{query}</a></td>
+                <td>./api/peluqueria/productos/busqueda/{query}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/productos/{grupo}</a></td>
+                <td>./api/peluqueria/productos/{grupo}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/productos/grupo/{grupo}</a></td>
+                <td>./api/peluqueria/productos/grupo/{grupo}</td>
             </tr>
             <tr>
                 <td class="cabecera">PUT</td>
-                <td>./api/peluqueria/productos/producto</a></td>
+                <td>./api/peluqueria/productos/producto</td>
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/producto</a></td>
+                <td>./api/peluqueria/producto</td>
             </tr> 
             <tr>
                 <td class="cabecera">DELETE</td>
@@ -109,7 +109,7 @@
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/productogrupo</a></td>
+                <td>./api/peluqueria/productogrupo</td>
             </tr>             
             <tr>
                 <td class="cabecera">GET</td>
@@ -157,11 +157,11 @@
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/usuario</a></td>
+                <td>./api/peluqueria/usuario</td>
             </tr> 
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/registro</a></td>
+                <td>./api/peluqueria/registro</td>
             </tr> 
             <tr>
                 <td class="cabecera">DELETE</td>
@@ -173,43 +173,43 @@
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/horarios/libres/{fecha}</a></td>
+                <td>./api/peluqueria/horarios/libres/{fecha}</td>
             </tr> 
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/horarios/libres/empleados/{usuario}/{fecha}</a></td>
+                <td>./api/peluqueria/horarios/libres/empleados/{usuario}/{fecha}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/empleados/disponibles/{hora}/{fecha}</a></td>
+                <td>./api/peluqueria/empleados/disponibles/{hora}/{fecha}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/empleados/disponibles/fecha/{fecha}</a></td>
+                <td>./api/peluqueria/empleados/disponibles/fecha/{fecha}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/serviciosempleados/{idEmpleado}</a></td>
+                <td>./api/peluqueria/serviciosempleados/{idEmpleado}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/citas/{fechaComienzo}/{fechaFin}</a></td>
+                <td>./api/peluqueria/citas/{fechaComienzo}/{fechaFin}</td>
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/cita/{hora}/{empleado}/{fecha}/{cliente}/{servicios}</a></td>
+                <td>./api/peluqueria/cita/{hora}/{empleado}/{fecha}/{cliente}/{servicios}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
-                <td>./api/peluqueria/citas/buscador/{horarios}/{empleados}/{fechaInicio}/{fechaFin}</a></td>
+                <td>./api/peluqueria/citas/buscador/{horarios}/{empleados}/{fechaInicio}/{fechaFin}</td>
             </tr>
             <tr>
                 <td class="cabecera">PUT</td>
-                <td>./api/peluqueria/citas/cita/{idCita}</a></td>
+                <td>./api/peluqueria/citas/cita/{idCita}</td>
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
-                <td>./api/peluqueria/cita/producto/{idCita}/{idProducto}/{cantidadProducto}</a></td>
+                <td>./api/peluqueria/cita/producto/{idCita}/{idProducto}/{cantidadProducto}</td>
             </tr>
             <tr>
                 <td class="cabecera">GET</td>
