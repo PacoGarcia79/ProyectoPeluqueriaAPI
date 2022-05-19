@@ -250,15 +250,15 @@ public class DAOPeluqueria {
 
         return resultado;
     }
-    
-    
+
     /**
      * <p>
      * Este metodo se usa para eliminar el/los horario/s del/los empleado/s del
      * listado de no disponibilidad, usando los ids de los registros.
      * </p>
      *
-     * @param listaIdDisponibilidad listado de ids de los registros de no disponibilidad que se quieren eliminar
+     * @param listaIdDisponibilidad listado de ids de los registros de no
+     * disponibilidad que se quieren eliminar
      * @return 1 ó 0 si la adición ha sido correcta o no, respectivamente
      */
     public static int delNoDisponibilidadHorarioEmpleadoPorId(String listaIdDisponibilidad) {
@@ -508,9 +508,10 @@ public class DAOPeluqueria {
      *
      * @param fechaComienzo fecha de comienzo del periodo.
      * @param fechaFin fecha de fin del periodo.
+     * @param idUsuario id del empleado de referencia.
      * @return ArrayList de objetos Cita
      */
-    public static ArrayList<Cita> citasGet(Date fechaComienzo, Date fechaFin) {
+    public static ArrayList<Cita> citasGet(Date fechaComienzo, Date fechaFin, int idUsuario) {
         ArrayList<Cita> citas = new ArrayList<>();
 
         if (con == null) {
@@ -521,13 +522,14 @@ public class DAOPeluqueria {
         try {
             String sentenciaSQL = "CALL bdpeluqueria.agenda('"
                     + new SimpleDateFormat("YYYY-MM-dd").format(fechaComienzo) + "','"
-                    + new SimpleDateFormat("YYYY-MM-dd").format(fechaFin) + "');";
+                    + new SimpleDateFormat("YYYY-MM-dd").format(fechaFin) + "',"
+                    + idUsuario + ");";
             statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sentenciaSQL);
             while (rs.next()) {
                 citas.add(new Cita(rs.getInt("IdCita"), rs.getDate("Fecha"), rs.getString("Cliente"),
                         rs.getString("Profesional"), rs.getString("Hora"), rs.getString("Servicios"),
-                        rs.getDouble("Precio_Servicios"), rs.getString("Productos"), rs.getString("Cantidad"), rs.getDouble("Precio_Productos")));
+                        rs.getDouble("Precio_Servicios"), rs.getString("Productos"), rs.getString("Cantidad"), rs.getDouble("Precio_Productos"), rs.getString("Telefono")));
             }
             rs.close();
 
@@ -660,8 +662,8 @@ public class DAOPeluqueria {
      * @param idCita id de la cita seleccionada
      * @param idProducto id del producto a añadir
      * @param cantidadProducto cantidad del producto a añadir
-     * @return 1 si se ha podido cancelar, 0 si ha habido un error
-     */    
+     * @return 1 si se ha podido cancelar, 0 si ha habido un errordebes
+     */
     public static int addProductoCita(int idCita, int idProducto, int cantidadProducto) {
         int resultado = 0;
 
@@ -670,7 +672,7 @@ public class DAOPeluqueria {
         }
 
         String sentenciaSQL = "CALL bdpeluqueria.addProductoCita(" + idCita + "," + idProducto + ",'"
-                     + cantidadProducto + "');";
+                + cantidadProducto + "');";
         try (Statement statement = con.createStatement()) {
             ResultSet rs = statement.executeQuery(sentenciaSQL);
             while (rs.next()) {
@@ -1131,7 +1133,9 @@ public class DAOPeluqueria {
 
         if (producto != null) {
             String sentenciaSQL = "UPDATE productos SET nombre='" + producto.getNombre() + "', precio='" + producto.getPrecio()
-                    + "', foto='" + producto.getFoto() + "', descripcion='" + producto.getDescripcion() + "' WHERE idProducto='" + producto.getIdProducto() + "'";
+                    + "', foto='" + producto.getFoto() + "', descripcion='" + producto.getDescripcion()
+                    + "', stock='" + producto.getStock()
+                    + "' WHERE idProducto='" + producto.getIdProducto() + "'";
             try (Statement statement = con.createStatement()) {
                 int cantidad = statement.executeUpdate(sentenciaSQL);
                 if (cantidad == 1) {
@@ -1190,7 +1194,7 @@ public class DAOPeluqueria {
         }
         if (producto != null) {
             String sentenciaSQL = "INSERT INTO productos (nombre, precio, idProductoGrupo, foto, descripcion, stock) VALUES ('" + producto.getNombre() + "','" + producto.getPrecio()
-                    + "','" + producto.getIdProductoGrupo() + "','" + producto.getFoto() + "','" + producto.getDescripcion() + "', 10)";
+                    + "','" + producto.getIdProductoGrupo() + "','" + producto.getFoto() + "','" + producto.getDescripcion() + "','" + producto.getStock() + "')";
             try (Statement statement = con.createStatement()) {
                 int cantidad = statement.executeUpdate(sentenciaSQL);
                 if (cantidad == 1) {

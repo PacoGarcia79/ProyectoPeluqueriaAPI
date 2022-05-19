@@ -25,7 +25,7 @@ public class Cita implements Serializable  {
     public Cita() {
     }
 
-    public Cita(int idCita, Date fecha, String cliente, String profesional, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos) {
+    public Cita(int idCita, Date fecha, String cliente, String profesional, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos, String telefono) {
         this.idCita = idCita;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -36,6 +36,7 @@ public class Cita implements Serializable  {
         this.productos = productos;
         this.cantidad = cantidad;
         this.precio_productos = precio_productos;
+        this.telefono = telefono;
     }
     
     public Cita(int idCita, Date fecha, String nombre, String hora, String servicios, Double precio_servicios, String productos, String cantidad, Double precio_productos) {
@@ -165,19 +166,19 @@ public class Cita implements Serializable  {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + this.idCita;
-        hash = 17 * hash + Objects.hashCode(this.fecha);
-        hash = 17 * hash + Objects.hashCode(this.cliente);
-        hash = 17 * hash + Objects.hashCode(this.profesional);
-        hash = 17 * hash + Objects.hashCode(this.hora);
-        hash = 17 * hash + Objects.hashCode(this.telefono);
-        hash = 17 * hash + Objects.hashCode(this.servicios);
-        hash = 17 * hash + Objects.hashCode(this.precio_servicios);
-        hash = 17 * hash + Objects.hashCode(this.productos);
-        hash = 17 * hash + Objects.hashCode(this.cantidad);
-        hash = 17 * hash + Objects.hashCode(this.precio_productos);
-        hash = 17 * hash + Objects.hashCode(this.nombre);
+        int hash = 3;
+        hash = 97 * hash + this.idCita;
+        hash = 97 * hash + Objects.hashCode(this.fecha);
+        hash = 97 * hash + Objects.hashCode(this.cliente);
+        hash = 97 * hash + Objects.hashCode(this.profesional);
+        hash = 97 * hash + Objects.hashCode(this.hora);
+        hash = 97 * hash + Objects.hashCode(this.telefono);
+        hash = 97 * hash + Objects.hashCode(this.servicios);
+        hash = 97 * hash + Objects.hashCode(this.precio_servicios);
+        hash = 97 * hash + Objects.hashCode(this.productos);
+        hash = 97 * hash + Objects.hashCode(this.cantidad);
+        hash = 97 * hash + Objects.hashCode(this.precio_productos);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
 
@@ -231,14 +232,9 @@ public class Cita implements Serializable  {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "Cita{" + "idCita=" + idCita + ", fecha=" + fecha + ", cliente=" + cliente + ", profesional=" + profesional + ", hora=" + hora + ", servicios=" + servicios + ", precio_servicios=" + precio_servicios + ", productos=" + productos + ", cantidad=" + cantidad + ", precio_productos=" + precio_productos + '}';
+        return "Cita{" + "idCita=" + idCita + ", fecha=" + fecha + ", cliente=" + cliente + ", profesional=" + profesional + ", hora=" + hora + ", telefono=" + telefono + ", servicios=" + servicios + ", precio_servicios=" + precio_servicios + ", productos=" + productos + ", cantidad=" + cantidad + ", precio_productos=" + precio_productos + ", nombre=" + nombre + '}';
     }
-
-    
-
-    
-    
 }

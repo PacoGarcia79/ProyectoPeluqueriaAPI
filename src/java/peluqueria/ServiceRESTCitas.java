@@ -297,12 +297,14 @@ public class ServiceRESTCitas {
      *
      * @param fechaComienzo fecha de comienzo del periodo.
      * @param fechaFin fecha de fin del periodo.
+     * @param idUsuario idUsuario para el que se quisiera obtener las citas
      * @throws java.text.ParseException
      */
     @GET
-    @Path("citas/{fechaComienzo}/{fechaFin}")
+    @Path("citas/{fechaComienzo}/{fechaFin}/{idUsuario}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response citasGet(@PathParam("fechaComienzo") String fechaComienzo, @PathParam("fechaFin") String fechaFin) throws ParseException {
+    public Response citasGet(@PathParam("fechaComienzo") String fechaComienzo,
+            @PathParam("fechaFin") String fechaFin, @PathParam("idUsuario") int idUsuario) throws ParseException {
         Response response;
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -315,7 +317,7 @@ public class ServiceRESTCitas {
         } else {
             response = Response
                     .status(Response.Status.OK)
-                    .entity(DAOPeluqueria.citasGet(dateComienzo, dateFin))
+                    .entity(DAOPeluqueria.citasGet(dateComienzo, dateFin, idUsuario))
                     .build();
         }
 
