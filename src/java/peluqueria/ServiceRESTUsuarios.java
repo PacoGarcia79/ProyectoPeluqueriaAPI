@@ -20,7 +20,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Clase que define los métodos con su interfaz del servicio de API Rest, en lo referente a usuarios
+ * Clase que define los métodos con su interfaz del servicio de API Rest, en lo
+ * referente a usuarios
  *
  * @author Francisco García
  */
@@ -68,7 +69,6 @@ public class ServiceRESTUsuarios {
     }
 
     // <editor-fold defaultstate="collapsed" desc=" Usuarios ">
-    
     /**
      * <p>
      * Este metodo se usa para obtener el listado completo de empleados
@@ -95,7 +95,8 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se usa para obtener el listado de empleados que no tengan asignado un servicio determinado.
+     * Este metodo se usa para obtener el listado de empleados que no tengan
+     * asignado un servicio determinado.
      * </p>
      *
      * @param idServicio id del servicio que se quiere comprobar
@@ -159,7 +160,8 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se usa para obtener el usuario mediante su id. No se incluyen las fechas ni el rol.
+     * Este metodo se usa para obtener el usuario mediante su id. No se incluyen
+     * las fechas ni el rol.
      * </p>
      *
      * @param idUsuario id del usuario
@@ -240,8 +242,9 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se usa para añadir un nuevo cliente a la BBDD en la funcionalidad de registro.
-     * Por defecto se usa el rol CLIENTE y la fecha actual.
+     * Este metodo se usa para añadir un nuevo cliente a la BBDD en la
+     * funcionalidad de registro. Por defecto se usa el rol CLIENTE y la fecha
+     * actual.
      * </p>
      *
      * @param usuario cliente a añadir
@@ -282,7 +285,8 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se usa para modificar datos de un usuario, incluyendo su contraseña. No incluye cambios en: rol, foto, fecha_alta, fecha_baja
+     * Este metodo se usa para modificar datos de un usuario, incluyendo su
+     * contraseña. No incluye cambios en: rol, foto, fecha_alta, fecha_baja
      * </p>
      *
      * @param usuario usuario de referencia a modificar
@@ -326,7 +330,43 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se usa para modificar datos de un usuario. No incluye cambios en: contraseña, rol, foto, fecha_alta, fecha_baja
+     * Este metodo se usa para modificar la contraseña de un usuario partiendo
+     * de su email
+     * </p>
+     *
+     * @param email email de referencia
+     * @param password contraseña a modificar
+     * @return true si el cambio se ha realizado correctamente
+     */
+    @PUT
+    @Path("usuarios/email/password/{email}/{password}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response usuarioPutPasswFromEmail(@PathParam("email") String email, @PathParam("password") String password) {
+        Response response;
+        Mensaje mensaje = new Mensaje();
+
+        if (DAOPeluqueria.modificaUsuarioPasswordDesdeEmail(email, password)) {
+            mensaje.setMensaje("Registro actualizado");
+            response = Response
+                    .status(Response.Status.OK)
+                    .entity(mensaje)
+                    .build();
+        } else {
+            mensaje.setMensaje("Error al actualizar");
+            response = Response
+                    .status(Response.Status.CONFLICT)
+                    .entity(mensaje)
+                    .build();
+        }
+
+        return response;
+    }
+
+    /**
+     * <p>
+     * Este metodo se usa para modificar datos de un usuario. No incluye cambios
+     * en: contraseña, rol, foto, fecha_alta, fecha_baja
      * </p>
      *
      * @param usuario usuario de referencia a modificar
@@ -451,7 +491,7 @@ public class ServiceRESTUsuarios {
 
     /**
      * <p>
-     * Este metodo se eliminar un usuario.
+     * Este metodo se usa para eliminar un usuario.
      * </p>
      *
      * @param idUsuario id del usuario que se quiere eliminar
@@ -488,6 +528,39 @@ public class ServiceRESTUsuarios {
                         .entity(mensaje)
                         .build();
             }
+        }
+
+        return response;
+    }
+
+    /**
+     * <p>
+     * Este metodo obtiene el nombre de usuario a partir de un email
+     * </p>
+     *
+     * @param email email del usuario
+     */
+    @GET
+    @Path("usuarios/username/{email}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getUsernameFromEmail(@PathParam("email") String email) {
+        Response response;
+        Mensaje mensaje = new Mensaje();
+
+        Usuario usuario = DAOPeluqueria.getUsernameFromEmail(email);
+
+        if (usuario != null) {
+            response = Response
+                    .status(Response.Status.OK)
+                    .entity(usuario)
+                    .build();
+        } else {
+            mensaje.setMensaje("No existe usuario con email " + email);
+            response = Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity(mensaje)
+                    .build();
         }
 
         return response;

@@ -43,6 +43,10 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
     }
+    
+    public Usuario(String username) {
+        this.username = username;
+    }
 
     public Usuario(int idUsuario, String nombre, String apellidos, String username, String password, Date fechaAlta, Date fechaBaja, String foto) {  
         this.idUsuario = idUsuario;

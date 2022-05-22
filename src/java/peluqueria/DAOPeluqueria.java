@@ -1292,7 +1292,7 @@ public class DAOPeluqueria {
 
         Statement statement;
         try {
-            String sentenciaSQL = "SELECT * FROM usuarios WHERE username = '" + usuario.getUsername() + "'";
+            String sentenciaSQL = "SELECT * FROM usuarios WHERE username = BINARY '" + usuario.getUsername() + "'";
             statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sentenciaSQL);
             if (rs.next()) {
@@ -1346,6 +1346,37 @@ public class DAOPeluqueria {
         }
 
         return resul;
+    }
+
+    /**
+     * <p>
+     * Este metodo se usa obtener el usuario a partir de su email
+     * </p>
+     *
+     * @param email correo electrónico del usuario
+     * @return Usuario
+     */
+    public static Usuario getUsernameFromEmail(String email) {
+        Usuario usuario = null;
+
+        if (con == null) {
+            conectar();
+        }
+
+        Statement statement;
+        try {
+            String sentenciaSQL = "SELECT username FROM usuarios WHERE email = '" + email + "'";
+            statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sentenciaSQL);
+            if (rs.next()) {
+                usuario = new Usuario(rs.getString("username"));
+            }
+            rs.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOPeluqueria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuario;
     }
 
     /**
@@ -1638,6 +1669,39 @@ public class DAOPeluqueria {
                 System.out.println("   => " + ex.getErrorCode() + " " + ex.getMessage());
             }
         }
+        return resul;
+    }
+
+    /**
+     * <p>
+     * Este metodo se usa para modificar la contraseña de un usuario partiendo
+     * de su email
+     * </p>
+     *
+     * @param email email de referencia
+     * @param password contraseña a modificar
+     * @return true si el cambio se ha realizado correctamente
+     */
+    public static boolean modificaUsuarioPasswordDesdeEmail(String email, String password) {
+        boolean resul = false;
+
+        if (con == null) {
+            conectar();
+        }
+
+        String sentenciaSQL = "UPDATE usuarios SET password='" + password
+                + "' WHERE email='" + email + "'";
+
+        try (Statement statement = con.createStatement()) {
+            int cantidad = statement.executeUpdate(sentenciaSQL);
+            if (cantidad == 1) {
+                resul = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(" => Error en sentencia UPDATE de SQL.");
+            System.out.println("   => " + ex.getErrorCode() + " " + ex.getMessage());
+        }
+
         return resul;
     }
 

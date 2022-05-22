@@ -138,7 +138,11 @@
             <tr>
                 <td class="cabecera">GET</td>
                 <td>./api/peluqueria/usuarios/{idUsuario}</td>
-            </tr>        
+            </tr>  
+            <tr>
+                <td class="cabecera">GET</td>
+                <td>./api/peluqueria/usuarios/username/{email}</td>
+            </tr> 
             <tr>
                 <td class="cabecera">PUT</td>
                 <td>./api/peluqueria/usuarios/usuario</td>
@@ -154,6 +158,10 @@
             <tr>
                 <td class="cabecera">PUT</td>
                 <td>./api/peluqueria/usuarios/usuario/password</td>
+            </tr>
+            <tr>
+                <td class="cabecera">PUT</td>
+                <td>./api/peluqueria/usuarios/usuario/fromEmail/password</td>
             </tr>
             <tr>
                 <td class="cabecera">POST</td>
